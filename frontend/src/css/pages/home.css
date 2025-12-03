@@ -1,5 +1,4 @@
-/* Homepage specific styles */
-/* Copy your existing homepage-style.css content here */@media (max-width: 1400px) {
+@media (max-width: 1400px) {
     .slider{
         height: 85vh;
     }

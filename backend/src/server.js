@@ -10,33 +10,9 @@ const URL = `http://${HOST}:${PORT}`;
 console.log('🚀 Starting SecureVoice Crime Reporting System...\n');
 
 const server = app.listen(PORT, () => {
-    console.log('='.repeat(60));
-    console.log('🛡️  SECUREVOICE CRIME REPORTING SYSTEM');
-    console.log('='.repeat(60));
-    console.log(`✅ Server Status:  RUNNING`);
-    console.log(`📊 Environment:    ${process.env.NODE_ENV || 'development'}`);
-    console.log(`🔧 Port:           ${PORT}`);
-    console.log('');
-    console.log('🌐 ACCESS URLs:');
-    console.log(`   📍 Local:       ${URL}`);
-    console.log(`   🌐 Network:     http://${getLocalIP()}:${PORT}`);
-    console.log('');
-    console.log('🔗 QUICK NAVIGATION:');
-    console.log(`   🏠 Homepage:        ${URL}/`);
-    console.log(`   👤 User Login:      ${URL}/login`);
-    console.log(`   📝 User Register:   ${URL}/register`);
-    console.log(`   👔 Admin Login:     ${URL}/admin-login`);
-    console.log(`   📞 Contact:         ${URL}/contact`);
-    console.log(`   👤 Profile:         ${URL}/profile`);
-    console.log(`   📋 Dashboard:       ${URL}/dashboard`);
-    console.log(`   🚨 Report Crime:    ${URL}/complain`);
-    console.log('');
-    console.log('🔧 API Endpoints:');
-    console.log(`   ❤️  Health Check:   ${URL}/api/health`);
-    console.log('='.repeat(60));
-    console.log('💡 Tip: Click any link above or copy to your browser!');
-    console.log('='.repeat(60));
-
+    console.log(`✅ Server running on port ${PORT}`);
+    console.log(`📍 Access: http://localhost:${PORT}`);
+    const localIP = getLocalIP();
     // Auto-open browser in development
     if (process.env.NODE_ENV !== 'production') {
         autoOpenBrowser(URL);
