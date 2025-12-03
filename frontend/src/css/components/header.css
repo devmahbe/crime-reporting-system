@@ -1,431 +1,437 @@
-/* header - style */
-header{
-    background-color: var(--dark-slate-gray);
-    position: sticky;
+/* Main Header Styles */
+.main-header {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    position: fixed;
     top: 0;
-    width: 100%;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-.logged-in-section {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-.username {
-    color: var(--text-dark);
+.main-header.scrolled {
+    background: rgba(255, 255, 255, 0.99);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    height: 70px;
+}
+
+/* Logo Styles - Red Theme */
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #c53030; /* Red theme */
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.logo-subtitle {
+    font-size: 0.8rem;
+    color: #2d3748;
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+
+.logo:hover .logo-text {
+    color: #9b2c2c; /* Darker red on hover */
+}
+
+/* Navigation Styles */
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item.active .nav-link {
+    color: #c53030; /* Red theme */
+    font-weight: 600;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #c53030; /* Red theme */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #c53030; /* Red theme */
+    transition: width 0.3s ease;
+    border-radius: 3px;
+}
+
+.nav-link:hover::after,
+.nav-item.active .nav-link::after {
+    width: 100%;
+}
+
+/* Mobile Menu Buttons */
+#menu-open-btn,
+#menu-close-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #4a5568;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s ease;
+}
+
+#menu-open-btn:hover,
+#menu-close-btn:hover {
+    color: #c53030; /* Red theme */
+}
+
+/* Auth Buttons - Green & Red Theme */
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-}
-
-.logout-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: #dc2626;
-    color: white;
+    transition: all 0.3s ease;
     border: none;
-    border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 0.85rem;
-    transition: background-color 0.2s ease;
-}
-
-.logout-btn:hover {
-    background: #b91c1c;
-}
-
-/* Hide login icons when admin is logged in */
-body.admin-logged-in .header-icons {
-    display: none !important;
-}
-
-/* Hide extra navigation items that shouldn't be there */
-.navigation-menu .admin-added-item {
-    display: none !important;
-}
-
-header .container{
-    width: 100%;
-    padding: 5px;
-}
-header .container .header-contents{
-    display: grid;
-    grid-template-columns: 10% 1fr 15%;
-    padding: 5px 25px;
-}
-
-/* Update grid for when admin is logged in */
-body.admin-logged-in header .container .header-contents{
-    grid-template-columns: 10% 1fr auto;
-}
-
-header .container .header-contents .logo{
-    width: 100%;
-    display: flex;
-    align-items: center;
+    min-width: 100px;
     justify-content: center;
 }
-header .container .header-contents .logo img{
-    width: 55px;
-    height: auto;
-}
-header .container .header-contents .navigation{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-header .container .header-contents .navigation :where(#menu-close-btn, #menu-open-btn){
-    font-size: var(--font-lg);
-    background-color: transparent;
-    border: none;
-}
-header .container .header-contents .navigation #menu-close-btn{
-    display: none;
-}
-header .container .header-contents .navigation #menu-open-btn{
-    display: none;
-}
-header .container .header-contents .navigation .navigation-menu{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-header .container .header-contents .navigation .navigation-menu .navigation-item{
-    padding: 3px 10px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    box-shadow: var(--shadow-soft);
-    transition: all 0.5s ease-in-out;
-}
-header .container .header-contents .navigation .navigation-menu .navigation-item.nav-user-admin{
-    display: none;
-}
-header .container .header-contents .navigation .navigation-menu .navigation-item .navigation-link{
-    color: var(--white-color);
-    font-weight: bold;
-}
-header .container .header-contents .navigation .navigation-menu .navigation-item.navigation-active{
-    background-color: var(--light-grey-green);
-}
-header .container .header-contents .navigation .navigation-menu  .navigation-item .navigation-link-active{
-    color: var(--dark-slate-gray);
-}
-header .container .header-contents .navigation .navigation-menu .navigation-item:hover{
-    background-color: var(--light-grey-green);
-    box-shadow: var(--shadow-hover);
-}
-header .container .header-contents .navigation .navigation-menu  .navigation-item:hover .navigation-link{
-    color: var(--dark-slate-gray);
-}
-header .container .header-contents .header-icons{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 20px;
-}
-header .container .header-contents .header-icons .icon-items{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-}
-header .container .header-contents .header-icons .icon-items .icon-border{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: 1px solid transparent;
-    background-color: var(--light-grey-green);
-    transition: all 0.5s ease-in-out;
-}
-header .container .header-contents .header-icons .icon-items .icon-border i{
-    font-size: var(--font-md);
-    color: var(--dark-charcoal-blue);
-}
-header .container .header-contents .header-icons .icon-items span{
-    font-size: var(--font-sm);
-    color: var(--white-color);
-}
-header .container .header-contents .header-icons .icon-items .icon-border:hover{
-    background-color: var(--dark-charcoal-blue);
-    box-shadow: var(--shadow-hover);
-}
-header .container .header-contents .header-icons .icon-items .icon-border:hover i{
-    color: var(--light-grey-green);
-}
 
-
-/* header - responsive */
-@media (max-width: 1400px) {
-
-}
-
-@media (max-width: 1280px) {
-
-}
-
-@media (max-width: 1024px) {
-
-}
-
-@media (max-width: 992px) {
-
-}
-
-@media (max-width: 768px) {
-    header .container .header-contents .navigation{
-        position: relative;
-    }
-    header .container .header-contents .navigation .navigation-menu{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 40%;
-        background-color: var(--light-grey-green);
-        height: 100%;
-        position: fixed;
-        left: -100%;
-        top: 0;
-        transition: all .6s ease-in-out;
-    }
-    body.appear-side-bar header .container .header-contents .navigation .navigation-menu{
-        left: 0;
-        z-index: 999;
-    }
-    body.appear-side-bar header::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        backdrop-filter: blur(5px);
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-    header .container .header-contents .navigation .navigation-menu .navigation-item{
-        background-color: var(--dark-slate-gray);
-        color: var(--light-grey-green);
-        width: 70%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px 8px;
-    }
-    header .container .header-contents .navigation .navigation-menu .navigation-item.nav-user-admin{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px 8px
-    }
-    header .container .header-contents .navigation .navigation-menu .navigation-item.navigation-active{
-        background-color: var(--light-grey-green);
-        box-shadow: var(--shadow-hover);
-    }
-
-    /* Mobile responsive for admin logged in state */
-    body.admin-logged-in header .container .header-contents .header-icons{
-        display: none !important;
-    }
-    
-    header .container .header-contents .navigation :where(#menu-close-btn, #menu-open-btn){
-        font-size: var(--font-lg);
-        background-color: transparent;
-        border: none;
-    }
-    header .container .header-contents .navigation #menu-close-btn{
-        position: absolute;
-        right: 30px;
-        top: 30px;
-        color: var(--dark-charcoal-blue);
-        display: block;
-    }
-    header .container .header-contents .navigation #menu-open-btn{
-        position: absolute;
-        right: -85px;
-        top: 20px;
-        color: var(--light-grey-green);
-        display: block;
-    }
-}
-
-@media (max-width: 576px) {
-
-}
-
-@media (max-width: 480px) {
-    header .container .header-contents .navigation #menu-open-btn{
-        right: -65px;
-    }
-}
-/* Add these rules to your existing header.css */
-
-/* Prevent extra navigation items when admin is logged in */
-body.admin-logged-in .header-icons .icon-items {
-    display: none !important;
-}
-
-/* Hide any extra list items that might be created */
-.navigation-menu li:not(.navigation-item):not(.admin-mobile-nav) {
-    display: none !important;
-}
-
-/* Ensure admin mobile nav is only visible on mobile */
-.admin-mobile-nav {
-    display: none !important;
-}
-
-@media (max-width: 768px) {
-    .admin-mobile-nav {
-        display: flex !important;
-    }
-}
-
-/* Remove any pseudo-elements that might be adding content */
-.navigation-menu::before,
-.navigation-menu::after {
-    display: none !important;
-}
-/* Add these stronger CSS rules to your existing header.css */
-
-/* Admin authentication container styles */
-.admin-auth-container {
-    display: flex !important;
-    align-items: center;
-    gap: 1rem;
-    visibility: visible !important;
-}
-
-.admin-welcome {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--white-color);
-    transition: opacity 0.2s ease;
-}
-
-.admin-welcome:hover {
-    opacity: 0.8;
-}
-
-.admin-avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: var(--light-grey-green);
-}
-
-.admin-avatar i {
-    font-size: var(--font-md);
-    color: var(--dark-charcoal-blue);
-}
-
-.admin-username {
-    font-size: var(--font-sm);
+.btn-login {
+    background: white;
+    color: #c53030; /* Red theme */
+    border: 2px solid #c53030; /* Red theme */
     font-weight: 600;
 }
 
-.admin-logout-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: #dc2626;
+.btn-login:hover {
+    background: #c53030; /* Red theme */
     color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: background-color 0.2s ease;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 48, 48, 0.3);
 }
 
-.admin-logout-button:hover {
-    background: #b91c1c;
+.btn-register {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%); /* Green theme */
+    color: white;
+    border: 2px solid transparent;
 }
 
-.admin-logout-button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+.btn-register:hover {
+    background: linear-gradient(135deg, #2f855a 0%, #276749 100%); /* Darker green */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
 }
 
-/* FORCE HIDE regular icons when admin is logged in - Multiple selectors for maximum coverage */
-body.admin-logged-in .header-icons .icon-items,
-body.admin-logged-in .icon-items,
-.admin-logged-in .header-icons .icon-items,
-.header-icons .icon-items.admin-hidden {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+/* Mobile Auth Buttons (hidden by default) */
+.mobile-auth {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
 }
 
-/* Ensure admin container is always visible when admin is logged in */
-body.admin-logged-in .admin-auth-container {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+.mobile-auth .btn {
+    width: 100%;
+    justify-content: center;
 }
 
-/* Hide mobile navigation items for user/admin when admin logged in */
-body.admin-logged-in .navigation-menu .nav-user-admin {
-    display: none !important;
-    visibility: hidden !important;
-}
+/* ==================== */
+/* RESPONSIVE DESIGN */
+/* ==================== */
 
-/* Remove any unwanted navigation links */
-.navigation-menu .admin-dashboard-link,
-.navigation-menu li:not(.navigation-item):not([class*="navigation"]) {
-    display: none !important;
-}
-
-/* Ensure proper grid layout when admin is logged in */
-body.admin-logged-in header .container .header-contents {
-    grid-template-columns: 10% 1fr auto;
-}
-
-/* Mobile responsive updates */
+/* Tablet Devices (768px and below) */
 @media (max-width: 768px) {
-    .admin-auth-container {
+    .header-content {
+        height: 60px;
+        padding: 0.5rem 0;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    /* Hide desktop navigation */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
         flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-end;
+        align-items: flex-start;
+        padding: 80px 2rem 2rem;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 0;
+        z-index: 1000;
     }
     
-    .admin-logout-button {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
+    .nav-menu.active {
+        right: 0;
     }
     
-    .admin-welcome {
+    .nav-item {
+        width: 100%;
+        margin: 0.5rem 0;
+        opacity: 0;
+        transform: translateX(20px);
+        animation: fadeInRight 0.4s forwards;
+    }
+    
+    .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .nav-item:nth-child(4) { animation-delay: 0.4s; }
+    
+    @keyframes fadeInRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    .nav-link {
+        padding: 0.75rem 0;
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+        color: #2d3748;
+    }
+    
+    .nav-link:hover {
+        color: #c53030;
+    }
+    
+    /* Show mobile menu buttons */
+    #menu-open-btn {
+        display: block;
+        font-size: 1.3rem;
+    }
+    
+    #menu-close-btn {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+    }
+    
+    /* Hide desktop auth buttons */
+    .auth-buttons {
+        display: none;
+    }
+    
+    /* Show mobile auth buttons in menu */
+    .mobile-auth {
+        display: flex;
+    }
+    
+    .mobile-auth .btn-login {
+        border-color: #c53030;
+        color: #c53030;
+    }
+    
+    .mobile-auth .btn-login:hover {
+        background: #c53030;
+        color: white;
+    }
+    
+    /* Overlay for mobile menu */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .nav-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/* Small Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    .header-content {
+        padding: 0.3rem 0;
+    }
+    
+    .logo-text {
+        font-size: 1.3rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.65rem;
+    }
+    
+    .nav-menu {
+        width: 250px;
+        padding: 70px 1.5rem 1.5rem;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.6rem 0;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
         font-size: 0.85rem;
+        min-width: 90px;
+    }
+}
+
+/* Large Mobile Devices (481px to 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .nav-menu {
+        width: 300px;
     }
     
-    /* Force hide icons on mobile too */
-    body.admin-logged-in .header-icons .icon-items {
-        display: none !important;
-        visibility: hidden !important;
+    .logo-text {
+        font-size: 1.4rem;
     }
 }
 
-/* Additional fallback rules */
-.icon-items.admin-hidden {
-    display: none !important;
-    visibility: hidden !important;
+/* Small Tablets (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    .logo-text {
+        font-size: 1.6rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        min-width: 90px;
+    }
 }
 
-/* Prevent any pseudo-elements from showing */
-body.admin-logged-in .header-icons .icon-items::before,
-body.admin-logged-in .header-icons .icon-items::after {
-    display: none !important;
+/* Smooth transitions for all interactive elements */
+.logo, .nav-link, .btn {
+    will-change: transform, opacity, color, background-color;
+}
+
+/* Accessibility: Focus styles */
+.btn:focus,
+.nav-link:focus,
+#menu-open-btn:focus,
+#menu-close-btn:focus {
+    outline: 2px solid #c53030;
+    outline-offset: 2px;
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover {
+        transform: none;
+    }
+    
+    .nav-link:hover::after {
+        width: 0;
+    }
+    
+    .nav-item.active .nav-link::after {
+        width: 100%;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .main-header {
+        background: white;
+        border-bottom: 2px solid #c53030;
+    }
+    
+    .nav-link {
+        color: #000;
+    }
+    
+    .btn-login {
+        border: 2px solid #000;
+        color: #000;
+    }
+    
+    .btn-register {
+        background: #000;
+        color: white;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .main-header,
+    .nav-link,
+    .btn,
+    .nav-menu {
+        transition: none;
+        animation: none;
+    }
 }
