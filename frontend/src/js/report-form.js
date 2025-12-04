@@ -1,5 +1,5 @@
 // Complaint Form Component
-import { apiCall } from '../api.js';
+import { apiCall } from './api.js';
 
 export function initComplaintForm() {
     document.addEventListener("DOMContentLoaded", () => {

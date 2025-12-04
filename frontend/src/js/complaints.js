@@ -1,5 +1,5 @@
 // Complaints Management Component
-import { apiCall } from '../api.js';
+import { apiCall } from './api.js';
 
 let allComplaints = [];
 let filteredComplaints = [];
