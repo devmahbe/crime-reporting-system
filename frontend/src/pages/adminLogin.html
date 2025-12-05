@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="CSS/adminLogin.css">
+    <link rel="icon" type="image/x-icon" href="../../Home Page/assets/images/favicon.ico">
+
+
+    <link rel="stylesheet" href="CSS/FormValidationSignUp.css">
+    <link rel="stylesheet" href="CSS/OTP.css">
+</head>
+<body>
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+
+            <form action="" class="sign-in-form">
+                <h2 class="title">Admin Login</h2>
+
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" name="username">
+                    <span id="name-error-admin"></span>
+                </div>
+
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" name="email">
+                    <span id="email-error-admin"></span>
+                </div>
+
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" name="password">
+                    <span id="password-error-admin"></span>
+                </div>
+
+                <div class="input-field">
+                    <i class="fas fa-location-dot"></i>
+                    <select class="district-select" name="district">
+                        <option value="" disabled selected>Select District</option>
+                        <option>Dhaka</option>
+                        <option>Rajshahi</option>
+                        <option>Barishal</option>
+                        <option>Khulna</option>
+                        <option>Sylhet</option>
+                    </select>
+                </div>
+
+                <input type="submit" value="Login" class="btn solid">
+                <!-- OTP Option-->
+                <div class="input-field" id="otp-container" style="display: none;">
+                <i class="fas fa-key" id="key-logo-2"></i>
+                <input type="text" placeholder="Enter OTP" id="otp-input-2">
+                <span id="otp-error"></span>
+                </div>
+
+        <input type="button" value="Verify OTP" class="btn solid" id="verify-otp-btn" style="display: none;">
+
+
+                <!-- OTP Option Ends-->
+                <div class="social-media">
+                    <a href="/signup" class="social-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>Welcome Admin</h3>
+                <p>District administrators login here</p>
+            </div>
+            <a href="/homepage">
+                <img src="img/secureVOICE.png" alt="image" class="image">
+            </a>
+        </div>
+    </div>
+</div>
+<!-- EmailJS removed - Now using Nodemailer backend for OTP -->
+<script src="Scripts/adminLogin.js"></script>
+
+</body>
+</html>
